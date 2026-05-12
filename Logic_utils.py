@@ -11,17 +11,20 @@ def calculate_days_overdue(last_contact_date_str):
         return 0
 
 def get_dashboard_summary(candidates):
+    # מחזיר סיכום כללי של המועמדים לפי סטטוס גיוס
     stats = {
         'total': len(candidates),
-        'new': 0,
-        'in_progress': 0,
-        'closed': 0
+        'recruitment_status': {
+            'ממתין לטיפול': 0,
+            'בתהליך גיוס': 0,
+            'הסתיים': 0
+        }
     }
     for c in candidates:
         status = c.get('status', '').lower()
-        if status == 'new': stats['new'] += 1
-        elif status == 'in_progress': stats['in_progress'] += 1
-        elif status == 'closed': stats['closed'] += 1
+        if status == 'new': stats['recruitment_status']['ממתין לטיפול'] += 1
+        elif status == 'in_progress': stats['recruitment_status']['בתהליך גיוס'] += 1
+        elif status == 'closed': stats['recruitment_status']['הסתיים'] += 1
     return stats
 
 def get_todays_reminders(candidates):
