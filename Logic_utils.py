@@ -16,14 +16,14 @@ def get_dashboard_summary(candidates):
         'total': len(candidates),
         'recruitment_status': {
             'ממתין לטיפול': 0,
-            'בתהליך גיוס': 0,
+            'לסיים בדחיפות': 0,
             'הסתיים': 0
         }
     }
     for c in candidates:
         status = c.get('status', '').lower()
         if status == 'new': stats['recruitment_status']['ממתין לטיפול'] += 1
-        elif status == 'in_progress': stats['recruitment_status']['בתהליך גיוס'] += 1
+        elif status == 'in_progress': stats['recruitment_status']['לסיים בדחיפות'] += 1
         elif status == 'closed': stats['recruitment_status']['הסתיים'] += 1
     return stats
 
